@@ -1,12 +1,11 @@
 function text_number(form) {
-    var requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/package.json';
-    var request = new XMLHttpRequest();
-    request.open('GET', requestURL);
-    let pow = JSON.parse(package);
     let NumberInput = form.number.value;
-    alert(pow);
 
-    let arr5 = ['','тысяч','миллион'];
+    let arr5 = ['','тысяч','миллион','миллиард','триллион','квадриллион','квинтиллион','секстиллион','септиллион','октиллион',
+        'нониллион','дециллион','ундециллион','дуодециллион','тредециллион','кватуордециллион','квиндециллион','сексдециллион',
+        'септендециллион','октодециллион','новемдециллион','вигинтиллион','унвигинтиллион','дуовигинтиллион','тревигинтиллион',
+        'кватуорвигинтиллион','квинвигинтиллион','сексвигинтиллион','септенвигинтиллион','октовигинтиллион','новемвигинтиллион',
+        'тригинтиллион','унтригинтиллион','дуотригинтиллион','третригинтиллион','кватортригинтиллион','квинтригинтиллион'];
     let arr4 = ['','один','два','три','четыре','пять','шесть','семь','восемь','девять','одна','две'];
     let arr3 = ['десять','одиннадцать','двенадцать','тринадцать','четырнадцать','пятнадцать','шестнадцать','семнадцать','восемнадцать','девятнадцать'];
     let arr2 = ['', 'десять','двадцать','тридцать','сорок','пятьдесят','шестьдесят','семьдесят','восемьдесят','девяносто'];
@@ -23,7 +22,6 @@ function text_number(form) {
     if (x == 1) {
         unit = number % 10;
         number = Math.floor(number / 10);
-
         k++;
         if(k == 1 && unit == 1)
             NumberOutput.push(arr4[10]);
@@ -33,20 +31,20 @@ function text_number(form) {
             NumberOutput.push(arr4[unit]);
         //  пушим тысячи
         if(k == 1) {
-            if (unit == 1 && ten != 1)
+            if (unit == 1)
                 NumberOutput.push(arr5[k] + 'а');
-            if (unit > 1 && unit < 5 && ten != 1)
+            if (unit > 1 && unit < 5)
                 NumberOutput.push(arr5[k] + 'и');
-            if(unit == 1 && ten == 1 || unit > 4)
+            if(unit > 4)
                 NumberOutput.push(arr5[k]);
         }
         // пушим для остальных чисел кроме тысяч
         if(k > 1){
-            if(unit == 1 && ten != 1)
+            if(unit == 1)
                 NumberOutput.push(arr5[k]);
-            if(unit > 1 && unit < 5 && ten != 1)
+            if(unit > 1 && unit < 5)
                 NumberOutput.push(arr5[k] + 'а');
-            if(unit == 1 && ten == 1 || unit > 4)
+            if(unit > 4)
                 NumberOutput.push(arr5[k] + 'ов');
         }
         k--;
@@ -79,7 +77,7 @@ function text_number(form) {
                 NumberOutput.push(arr5[k]);
             if(unit > 1 && unit < 5 && ten != 1)
                 NumberOutput.push(arr5[k] + 'а');
-            if(unit == 1 && ten == 1 || unit > 4 || unit == 0)
+            else
                 NumberOutput.push(arr5[k] + 'ов');
         }
         k--;
@@ -114,7 +112,7 @@ function text_number(form) {
                 NumberOutput.push(arr5[k] + 'а');
             if (unit > 1 && unit < 5 && ten != 1)
                 NumberOutput.push(arr5[k] + 'и');
-            if (unit == 1 && ten == 1 || unit > 4 || unit == 0)
+            if (ten == 1 || unit > 4 || unit == 0)
                 NumberOutput.push(arr5[k]);
         }
         // пушим для остальных чисел кроме тысяч
@@ -123,11 +121,12 @@ function text_number(form) {
                 NumberOutput.push(arr5[k]);
             if(unit > 1 && unit < 5 && ten != 1)
                 NumberOutput.push(arr5[k] + 'а');
-            if(unit == 1 && ten == 1 || unit > 4 || unit == 0)
+            if(ten == 1 || unit > 4 || unit == 0)
                 NumberOutput.push(arr5[k] + 'ов');
         }
         k--;
     }
+
     //   выводим результат
     NumberOutput = NumberOutput.filter(function(e){return e});
     NumberOutput = NumberOutput.join(' ');
